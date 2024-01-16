@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Trascrizione in Corso</title>
+</head>
+<body>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <h2>Trascrizione in corso...</h2>
+                <p>Attendere prego. La trascrizione del file audio è in corso.</p>
+                <p>Una volta completata, sarà possibile scaricare la trascrizione da questo <a href="{{ url_for('download_transcription', filename=filename) }}">link</a>.</p>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

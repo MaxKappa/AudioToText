@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Carica File Audio per Trascrizione</title>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Trascrizione Audio</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Servizi</a></li>
+            <li><a href="#" role="button">Contatti</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Trascrivi il tuo Audio</h2>
+                    <h3>Usando Whisper di OpenAI</h3>
+                </hgroup>
+                <p>Carica il tuo file audio e ricevi una trascrizione precisa grazie alla tecnologia Whisper di OpenAI.</p>
+                <form enctype="multipart/form-data" action="/upload" method="POST">
+                    <input type="file" id="audioFile" name="audioFile" accept="audio/*" required>
+                    <button type="submit">Carica e Trascrivi</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <footer class="container">
+        <small>
+            <a href="#">Termini di servizio</a> • <a href="#">Privacy</a>
+        </small>
+    </footer>
+</body>
+</html>
