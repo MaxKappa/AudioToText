@@ -50,7 +50,7 @@ def download_transcription(filename):
 
 @app.route('/remaining-time')
 def remaining_time():
-    print(transcriber.getRemainingTime())
     return jsonify({"remainingTime": str(transcriber.getRemainingTime()), "estimatedTotalTime": str(transcriber.getEstimatedTotalTime())})
 
-app.run(host='localhost', port=8181, debug=True)
+if __name__ == '__main__':
+    app.run(host='localhost', port=8181, debug=True)
