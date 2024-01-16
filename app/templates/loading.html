@@ -30,7 +30,7 @@
                     <div class="loading-progress" id="loadingProgress"></div>
                 </div>
                 <p id="remainingTime">Tempo rimanente: calcolo...</p>
-                <p>Una volta completata, sarà possibile scaricare la trascrizione da questo <a href="{{ url_for('download_transcription', filename=filename) }}">link</a>.</p>
+                <p id="downloadLink" style="display: none;">Puoi scaricare la trascrizione da questo <a href="{{ url_for('download_transcription', filename=filename) }}">link</a>.</p>
             </section>
         </div>
     </main>
@@ -46,6 +46,10 @@
                 document.getElementById('loadingProgress').style.width = progressPercentage + '%';
                 if (remainingTime != 0 || (progressPercentage == 100) && (remainingTime == 0)){
                     document.getElementById('remainingTime').innerText = 'Tempo rimanente: ' + remainingTime + ' secondi';
+                }
+                if (progressPercentage == 100) {
+                    document.getElementById('remainingTime').innerText = 'Trascrizione completata!';
+                    document.getElementById('downloadLink').style = 'display: block;';
                 }
             })
             .catch(error => console.log('Errore:', error));

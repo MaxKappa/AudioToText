@@ -47,10 +47,10 @@ def download_transcription(filename):
     file_path = os.path.join(app.config['TRANSCRIPTION_FOLDER'], filename)
     return send_file(file_path, as_attachment=True, download_name=filename)
 
-
 @app.route('/remaining-time')
 def remaining_time():
     return jsonify({"remainingTime": str(transcriber.getRemainingTime()), "estimatedTotalTime": str(transcriber.getEstimatedTotalTime())})
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8181, debug=True)
