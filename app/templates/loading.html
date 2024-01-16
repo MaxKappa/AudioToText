@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <title>Trascrizione in Corso</title>
+    <style>
+        .loading-bar {
+            height: 30px;
+            background-color: #f3f4f6;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background-color: #007bff;
+            border-radius: 15px;
+        }
+    </style>
 </head>
 <body>
     <main class="container">
@@ -12,9 +26,32 @@
             <section>
                 <h2>Trascrizione in corso...</h2>
                 <p>Attendere prego. La trascrizione del file audio è in corso.</p>
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p id="remainingTime">Tempo rimanente: calcolo...</p>
                 <p>Una volta completata, sarà possibile scaricare la trascrizione da questo <a href="{{ url_for('download_transcription', filename=filename) }}">link</a>.</p>
             </section>
         </div>
     </main>
-</body>
-</html>
+
+    <script>
+        function updateProgressBar() {
+            fetch('/remaining-time')
+            .then(response => response.json())
+            .then(data => { 
+                            const remainingTime = data.remainingTime;
+                            const totalTime = data.estimatedTotalTime;
+                            const progressPercentage = ((totalTime - remainingTime) / totalTime) * 100;
+                document.getElementById('loadingProgress').style.width = progressPercentage + '%';
+                if (remainingTime != 0 || (progressPercentage == 100) && (remainingTime == 0)){
+                    document.getElementById('remainingTime').innerText = 'Tempo rimanente: ' + remainingTime + ' secondi';
+                }
+            })
+            .catch(error => console.log('Errore:', error));
+    }
+
+    setInterval(updateProgressBar, 2000); 
+    </script>
+    </body>
+    </html>
