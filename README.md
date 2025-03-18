@@ -16,7 +16,7 @@ Getting Started
 ## Installation
 Clone the repository:
 ```
-git clone https://github.com/your_username/AudioToText.git
+git clone https://github.com/MaxKappa/AudioToText.git
 ```
 Install dependencies:
 ```
